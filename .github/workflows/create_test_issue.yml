@@ -6,11 +6,15 @@ on:
 jobs:
   create_hoge_issue:
     runs-on: ubuntu-latest
+    env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - name: create issue by template
+      - name: create issue by template1
         uses: JasonEtco/create-an-issue@5d9504915f79f9cc6d791934b8ef34f2353dd74d
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: .github/ISSUE_TEMPLATE/0_test_template.md
+      - name: create issue by template2
+        uses: JasonEtco/create-an-issue@5d9504915f79f9cc6d791934b8ef34f2353dd74d
         with:
           filename: .github/ISSUE_TEMPLATE/0_test_template.md

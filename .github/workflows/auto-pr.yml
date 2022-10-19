@@ -20,7 +20,7 @@ jobs:
             github.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              head: 'release',
+              head: 'master',
               base: 'master',
               title: `fixed mix docs.proto`,
               body: `${context.payload.pull_request.title}(#${context.issue.number}) のmix docs.protoです｡`

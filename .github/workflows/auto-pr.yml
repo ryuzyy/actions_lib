@@ -5,7 +5,7 @@ on:
     types: 
       - closed
     branches:
-      - master
+      - main
   # 手動実行
   workflow_dispatch:
 jobs:
@@ -20,8 +20,8 @@ jobs:
             github.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              head: 'master',
-              base: 'master',
+              head: 'main',
+              base: 'main',
               title: `fixed mix docs.proto`,
               body: `${context.payload.pull_request.title}(#${context.issue.number}) のmix docs.protoです｡`
             })

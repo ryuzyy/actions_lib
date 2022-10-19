@@ -1,0 +1,28 @@
+name: Create mix docs.proto PR
+on:
+  # master 向きの PR が閉じられたとき
+  pull_request:
+    types: 
+      - closed
+    branches:
+      - master
+  # 手動実行
+  workflow_dispatch:
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - uses: actions/github-script@v3
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: 'release',
+              base: 'master',
+              title: `fixed mix docs.proto`,
+              body: `${context.payload.pull_request.title}(#${context.issue.number}) のmix docs.protoです｡`
+            })
+
